@@ -36,7 +36,7 @@ class Zimmetlenen_urunler_Controller extends Controller
             "urun_sayisi" => $urun_sayisi,
             "zimmetlenen_kisi" => $zimmetlenen_kisi,
             "zimmetleyen_kisi" => $zimmetleyen_kisi,
-            "zimmetleme_tarihi" => rand(100,123),
+            // "zimmetleme_tarihi" => rand(100,123),
         ]);
         return redirect("zimmetlenen-urunler");
     }

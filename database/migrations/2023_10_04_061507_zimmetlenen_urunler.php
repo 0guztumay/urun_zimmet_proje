@@ -21,7 +21,6 @@ class ZimmetlenenUrunler extends Migration
             $table->string("urun_sayisi");
             $table->string("zimmetlenen_kisi");
             $table->string("zimmetleyen_kisi");
-            $table->string("zimmetleme_tarihi") -> nullable(); //DATE olarak degisecek. Ya da auto olacak
             $table->timestamps();
         });
     }
