@@ -14,13 +14,12 @@ class ZimmetlenenUrunler extends Migration
     public function up()
     {
         Schema::create('zimmetlenen_urunler', function (Blueprint $table) {
-            $table->id();
+            $table->id("urun_id");
+            $table->integer("zimmetlenen_kisi_id");
             $table->string("urun_adi");
             $table->string("urun_modeli");
             $table->string("urun_tipi");
-            $table->string("urun_sayisi");
-            $table->string("zimmetlenen_kisi");
-            $table->string("zimmetleyen_kisi");
+            $table->integer("urun_sayisi");
             $table->timestamps();
         });
     }

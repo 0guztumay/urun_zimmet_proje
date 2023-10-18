@@ -28,7 +28,6 @@
                                     <th>Ürün Tipi</th>
                                     <th>Ürün Sayısı</th>
                                     <th>Zimmetlenen Kişi</th>
-                                    <th>Zimmetleyen Kişi</th>
                                     <th>Zimmetleme Tarihi</th>
                                     <th class="text-end">Action</th>
                                 </tr>
@@ -45,11 +44,10 @@
                                     <td>{{$urun_modeli}}</td>
                                     <td><span class="d-inline-block align-middle">{{$urun_tipi}}</span></td>
                                     <td>{{$urun_sayisi}}<span></span></td>
-                                    <td>{{$zimmetlenen_kisi}}</td>
-                                    <td>{{$zimmetleyen_kisi}}</td>
+                                    <td>{{$zimmetlenen_kisi_id}}</td>
                                     <td>{{$created_at}}</td>
                                     <td class="text-end">
-                                        <a href="{{route("sil", ["id" => $id])}}"><button type="button" class="btn btn-danger">Sil</button></a>
+                                        <a href="{{route("sil", ["urun_id" => $urun_id])}}"><button type="button" class="btn btn-danger">Sil</button></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -59,7 +57,7 @@
 
                 <h3 class="text-center">ZİMMET GÜNCELLE</h3>
                 <div class="container mt-4">
-                    <form action="{{route("guncelle", ["id" => $id])}}" method="post">
+                    <form action="{{route("guncelle", ["urun_id" => $urun_id])}}" method="post">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Ürün Adı</label>
@@ -79,11 +77,7 @@
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Zimmetlenen Kişi</label>
-                            <input type="text" name="zimmetlenen_kisi" class="form-control" value="{{$zimmetlenen_kisi}}">
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label">Zimmetleyen Kişi</label>
-                            <input type="text" name="zimmetleyen_kisi" class="form-control" value="{{$zimmetleyen_kisi}}">
+                            <input type="number" name="zimmetlenen_kisi" class="form-control" value="{{$zimmetlenen_kisi_id}}">
                           </div>
                           <button type="submit" class="btn btn-primary">Guncelle</button>
                     </form>

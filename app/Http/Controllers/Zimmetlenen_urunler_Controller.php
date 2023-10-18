@@ -6,11 +6,15 @@ use App\Models\Zimmetlenen_urunler_Model;
 use Illuminate\Http\Request;
 use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 use PhpParser\Node\Expr\FuncCall;
+use App\Models\KisilerModel;
+use Kisiler;
 use ZimmetlenenUrunler;
 
 class Zimmetlenen_urunler_Controller extends Controller
 {
     public function showPageUrunZimmetle(){
+        // $urunbul = Zimmetlenen_urunler_Model::find(6);
+        // print_r($urunbul);
         return view("urun-zimmetle");
     }
     public function showPageZimmetlenenUrunler(){
@@ -26,18 +30,24 @@ class Zimmetlenen_urunler_Controller extends Controller
         $urun_modeli = $request -> urun_modeli;
         $urun_tipi = $request -> urun_tipi;
         $urun_sayisi = $request -> urun_sayisi;
-        $zimmetlenen_kisi = $request -> zimmetlenen_kisi;
-        $zimmetleyen_kisi = $request -> zimmetleyen_kisi;
+        $zimmetlenen_kisi_adi = $request -> zimmetlenen_kisi;
 
-        Zimmetlenen_urunler_Model::create([
+        $isimBul = KisilerModel::where("ad", $zimmetlenen_kisi_adi) -> first();
+
+
+        $isimYazdir = Zimmetlenen_urunler_Model::where("zimmetlenen_kisi_id", $isimBul -> kisi_id) -> first();
+        $kisiBul = Zimmetlenen_urunler_Model::find($isimYazdir);
+        // dd($kisiBul -> kisiler);
+        // $isimBul = KisilerModel::find("Oguz") -> first();
+        if($isimBul !== null){
+            Zimmetlenen_urunler_Model::create([
             "urun_adi" => $urun_adi,
             "urun_modeli" => $urun_modeli,
             "urun_tipi" => $urun_tipi,
             "urun_sayisi" => $urun_sayisi,
-            "zimmetlenen_kisi" => $zimmetlenen_kisi,
-            "zimmetleyen_kisi" => $zimmetleyen_kisi,
-            // "zimmetleme_tarihi" => rand(100,123),
-        ]);
+            "zimmetlenen_kisi_id" => $isimBul -> kisi_id,
+            ]);
+        }
         return redirect("zimmetlenen-urunler");
     }
 
@@ -52,8 +62,7 @@ class Zimmetlenen_urunler_Controller extends Controller
             "urun_modeli" => $request -> urun_modeli,
             "urun_tipi" => $request -> urun_tipi,
             "urun_sayisi" => $request -> urun_sayisi,
-            "zimmetlenen_kisi" => $request -> zimmetlenen_kisi,
-            "zimmetleyen_kisi" => $request -> zimmetleyen_kisi,
+            "zimmetlenen_kisi_id" => $request -> zimmetlenen_kisi,
         ]);
     return redirect()->route("zimmet-duzenle", $id);
     }

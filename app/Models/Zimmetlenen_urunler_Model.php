@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Zimmetlenen_urunler_Model extends Model
 {
     protected $table = "zimmetlenen_urunler";
+    protected $primaryKey = 'urun_id';
     protected $fillable = [
+        "zimmetlenen_kisi_id",
         "urun_adi",
         "urun_modeli",
         "urun_tipi",
         "urun_sayisi",
-        "zimmetlenen_kisi",
-        "zimmetleyen_kisi",
-        "zimmetleme_tarihi",
         "created_at",
         "updated_at",
     ];
+
+    public function kisiler(){
+        return $this -> hasOne(KisilerModel::class, 'kisi_id', "zimmetlenen_kisi_id");
+    }
 }

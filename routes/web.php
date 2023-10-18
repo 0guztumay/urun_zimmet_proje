@@ -23,7 +23,7 @@ Route::post('/urun-zimmetlendi', [Zimmetlenen_urunler_Controller::class, "urunZi
 
 Route::get('/zimmetlenen-urunler',[Zimmetlenen_urunler_Controller::class, "zimmetlenenUrunleriListele"]);
 
-Route::get('/zimmet-duzenle/{id}', [Zimmetlenen_urunler_Controller::class, "showPageZimmetDuzenle"])->name("zimmet-duzenle");
-Route::post('/zimmet-guncelle/{id}', [Zimmetlenen_urunler_Controller::class, "update"]) -> name("guncelle");
+Route::get('/zimmet-duzenle/{urun_id}', [Zimmetlenen_urunler_Controller::class, "showPageZimmetDuzenle"])->name("zimmet-duzenle");
+Route::post('/zimmet-guncelle/{urun_id}', [Zimmetlenen_urunler_Controller::class, "update"]) -> name("guncelle");
 
-Route::get('/zimmet-sil/{id}', [Zimmetlenen_urunler_Controller::class, "delete"]) -> name("sil");
+Route::get('/zimmet-sil/{urun_id}', [Zimmetlenen_urunler_Controller::class, "delete"]) -> name("sil");

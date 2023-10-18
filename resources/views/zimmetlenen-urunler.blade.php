@@ -28,7 +28,6 @@
                                         <th>Ürün Tipi</th>
                                         <th>Ürün Sayısı</th>
                                         <th>Zimmetlenen Kişi</th>
-                                        <th>Zimmetleyen Kişi</th>
                                         <th>Zimmetleme Tarihi</th>
                                         <th class="text-end">Action</th>
                                     </tr>
@@ -46,12 +45,13 @@
                                         <td>{{$urunler -> urun_modeli}}</td>
                                         <td><span class="d-inline-block align-middle">{{$urunler -> urun_tipi}}</span></td>
                                         <td><span>{{$urunler -> urun_sayisi}}</span></td>
-                                        <td>{{$urunler -> zimmetlenen_kisi}}</td>
-                                        <td>{{$urunler -> zimmetleyen_kisi}}</td>
+                                        <td>{{$urunler -> kisiler() -> first() -> ad}}</td>
                                         <td>{{$urunler -> created_at}}</td>
                                         <td class="text-end">
-                                            <div class="actionButton">
-                                                <a href="{{route("zimmet-duzenle",$urunler->id)}}"><button type="button" class="btn btn-danger">Düzenle</button></a>
+                                            <div class="actionButton">  
+                                                <a href="{{route('zimmet-duzenle', ["urun_id" => $urunler -> urun_id])}}">
+                                                    <button type="button" class="btn btn-danger">Düzenle</button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

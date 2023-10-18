@@ -31,11 +31,7 @@
               </div>
               <div class="mb-3">
                 <label class="form-label">Zimmetlenen Kişi</label>
-                <input type="text" name="zimmetlenen_kisi" class="form-control" placeholder="Örnek: Oğuz Tümay">
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Zimmetleyen Kişi</label>
-                <input type="text" name="zimmetleyen_kisi" class="form-control" placeholder="Örnek: Ali Veli">
+                <input type="text" name="zimmetlenen_kisi" class="form-control" placeholder="Örnek: Oguz">
               </div>
               <button type="submit" class="btn btn-primary">Zimmetle</button>
         </form>
