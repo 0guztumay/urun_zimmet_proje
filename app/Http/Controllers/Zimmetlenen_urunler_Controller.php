@@ -72,7 +72,6 @@ class Zimmetlenen_urunler_Controller extends Controller
     if ($silinecekZimmet) {
         $silinecekZimmet->delete();
     }
-    // return redirect()->route("zimmetlenen-urunler", $id);
-    return redirect("zimmetlenen-urunler");
+        return redirect()->route("zimmetlenen-urunler", $id);
     }
 }

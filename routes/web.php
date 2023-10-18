@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Brands;
 use App\Http\Controllers\Zimmetlenen_urunler_Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,10 @@ Route::get('/zimmet-duzenle/{urun_id}', [Zimmetlenen_urunler_Controller::class, 
 Route::post('/zimmet-guncelle/{urun_id}', [Zimmetlenen_urunler_Controller::class, "update"]) -> name("guncelle");
 
 Route::get('/zimmet-sil/{urun_id}', [Zimmetlenen_urunler_Controller::class, "delete"]) -> name("sil");
+
+
+Route::get('/add-brand', [Brands::class, "index"]);
+Route::post('/add-brand', [Brands::class, "store"]) -> name("add-brand");
+Route::get('/add-brand', [Brands::class, "create"]) -> name("list-brands");
+Route::get('/delete-brand/{id}', [Brands::class, "destroy"]) -> name("delete-brand");
+Route::post('/update-brand/{id}', [Brands::class, "update"]) -> name("update-brand");

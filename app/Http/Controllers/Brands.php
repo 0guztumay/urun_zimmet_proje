@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BrandsModel;
 use Illuminate\Http\Request;
 
 class Brands extends Controller
@@ -13,7 +14,8 @@ class Brands extends Controller
      */
     public function index()
     {
-        //
+        $brands = BrandsModel::get();
+        return view('add-brand', ["brands" => $brands]);
     }
 
     /**
@@ -23,7 +25,8 @@ class Brands extends Controller
      */
     public function create()
     {
-        //
+        $brands = BrandsModel::get();
+        return view('add-brand', ["brands" => $brands]);
     }
 
     /**
@@ -34,7 +37,12 @@ class Brands extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request -> name;
+        BrandsModel::create([
+            "name" => $name,
+        ]);
+        $brands = BrandsModel::get();
+        return redirect() -> route("add-brand");
     }
 
     /**
@@ -68,7 +76,11 @@ class Brands extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        BrandsModel::find($id) -> update([
+            "name" => $request -> name,
+        ]);
+        return redirect() -> route("add-brand");
+        return view("add-brand", ["id" => $id]);
     }
 
     /**
@@ -79,6 +91,11 @@ class Brands extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteBrand = BrandsModel::find($id);
+        if($deleteBrand){
+            $deleteBrand->delete();
+        }
+        return redirect() -> route("add-brand");
+        // return redirect("add-brands", ["id" => $id]);
     }
 }
