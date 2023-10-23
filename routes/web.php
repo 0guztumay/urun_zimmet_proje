@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Brands;
+use App\Http\Controllers\Models;
+use App\Http\Controllers\Products;
+use App\Http\Controllers\Users;
+use App\Http\Controllers\Debit;
 use App\Http\Controllers\Zimmetlenen_urunler_Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +33,42 @@ Route::post('/zimmet-guncelle/{urun_id}', [Zimmetlenen_urunler_Controller::class
 
 Route::get('/zimmet-sil/{urun_id}', [Zimmetlenen_urunler_Controller::class, "delete"]) -> name("sil");
 
-
+//Brands
 Route::get('/add-brand', [Brands::class, "index"]);
 Route::post('/add-brand', [Brands::class, "store"]) -> name("add-brand");
 Route::get('/add-brand', [Brands::class, "create"]) -> name("list-brands");
 Route::get('/delete-brand/{id}', [Brands::class, "destroy"]) -> name("delete-brand");
 Route::post('/update-brand/{id}', [Brands::class, "update"]) -> name("update-brand");
+//Brands
+
+//Models
+Route::get('/add-model', [Models::class, "index"]);
+Route::post('/add-model', [Models::class, "store"]) -> name("add-model");
+Route::get('/add-model', [Models::class, "create"]) -> name("list-models");
+Route::get('/delete-model/{id}', [Models::class, "destroy"]) -> name("delete-model");
+Route::post('/update-model/{id}', [Models::class, "update"]) -> name("update-model");
+//Models
+
+//Products
+Route::get('/add-product', [Products::class, "index"]);
+Route::post('/add-product', [Products::class, "store"]) -> name("add-product");
+Route::get('/add-product', [Products::class, "create"]) -> name("list-Products");
+Route::get('/delete-product/{id}', [Products::class, "destroy"]) -> name("delete-product");
+Route::post('/update-product/{id}', [Products::class, "update"]) -> name("update-product");
+//Products
+
+//Users
+Route::get('/add-user', [Users::class, "index"]);
+Route::post('/add-user', [Users::class, "store"]) -> name("add-user");
+Route::get('/add-user', [Users::class, "create"]) -> name("list-users");
+Route::get('/delete-user/{id}', [Users::class, "destroy"]) -> name("delete-user");
+Route::post('/update-user/{id}', [Users::class, "update"]) -> name("update-user");
+//Users
+
+//Debit
+Route::get('/add-debit', [Debit::class, "index"]);
+Route::post('/add-debit', [Debit::class, "store"]) -> name("add-debit");
+Route::get('/add-debit', [Debit::class, "create"]) -> name("list-debits");
+Route::get('/delete-debit/{id}', [Debit::class, "destroy"]) -> name("delete-debit");
+Route::post('/update-debit/{id}', [Debit::class, "update"]) -> name("update-debit");
+//Debit

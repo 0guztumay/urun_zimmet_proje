@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BrandsModel;
+use App\Models\UsersModel;
 use Illuminate\Http\Request;
 
-class Brands extends Controller
+class Users extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,8 @@ class Brands extends Controller
      */
     public function index()
     {
-        // $models = BrandsModel::find(2);
-        // dd($models);
-        $brands = BrandsModel::get();
-        return view('add-brand', ["brands" => $brands]);
+        $users = UsersModel::get();
+        return view('add-user', ["users" => $users]);
     }
 
     /**
@@ -27,8 +25,8 @@ class Brands extends Controller
      */
     public function create()
     {
-        $brands = BrandsModel::get();
-        return view('add-brand', ["brands" => $brands]);
+        $users = UsersModel::get();
+        return view('add-user', ["users" => $users]);
     }
 
     /**
@@ -39,10 +37,11 @@ class Brands extends Controller
      */
     public function store(Request $request)
     {
-        BrandsModel::create([
+        UsersModel::create([
+            "username" => $request -> username,
             "name" => $request -> name,
         ]);
-        return redirect() -> route("add-brand");
+        return redirect() -> route("add-user");
     }
 
     /**
@@ -76,10 +75,11 @@ class Brands extends Controller
      */
     public function update(Request $request, $id)
     {
-        BrandsModel::find($id) -> update([
+        UsersModel::find($id) -> update([
+            "username" => $request -> username,
             "name" => $request -> name,
         ]);
-        return redirect() -> route("add-brand");
+        return redirect() -> route("add-user");
     }
 
     /**
@@ -90,10 +90,10 @@ class Brands extends Controller
      */
     public function destroy($id)
     {
-        $deleteBrand = BrandsModel::find($id);
-        if($deleteBrand){
-            $deleteBrand->delete();
+        $deleteUser = UsersModel::find($id);
+        if($deleteUser){
+            $deleteUser->delete();
         }
-        return redirect() -> route("add-brand");
+        return redirect() -> route("add-user");
     }
 }

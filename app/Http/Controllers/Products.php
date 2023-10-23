@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BrandsModel;
+use App\Models\ModelsModel;
+use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 
-class Brands extends Controller
+class Products extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,9 @@ class Brands extends Controller
      */
     public function index()
     {
-        // $models = BrandsModel::find(2);
-        // dd($models);
-        $brands = BrandsModel::get();
-        return view('add-brand', ["brands" => $brands]);
+        $products = ProductsModel::get();
+        $models = ModelsModel::all();
+        return view('add-product', ["products" => $products], ["models" => $models]);
     }
 
     /**
@@ -27,8 +27,9 @@ class Brands extends Controller
      */
     public function create()
     {
-        $brands = BrandsModel::get();
-        return view('add-brand', ["brands" => $brands]);
+        $products = ProductsModel::get();
+        $models = ModelsModel::all();
+        return view('add-product', ["products" => $products], ["models" => $models]);
     }
 
     /**
@@ -39,10 +40,17 @@ class Brands extends Controller
      */
     public function store(Request $request)
     {
-        BrandsModel::create([
-            "name" => $request -> name,
-        ]);
-        return redirect() -> route("add-brand");
+        $find_model = ModelsModel::find($request -> selectedModelName);
+        if($find_model){
+            ProductsModel::create([
+                "name" => $request -> name,
+                "model_id" => $find_model -> id,
+            ]);
+        }
+        else{
+            return 'Basarisiz';
+        }
+        return redirect() -> route("add-product");
     }
 
     /**
@@ -76,10 +84,11 @@ class Brands extends Controller
      */
     public function update(Request $request, $id)
     {
-        BrandsModel::find($id) -> update([
+        ProductsModel::find($id) -> update([
             "name" => $request -> name,
+            "model_id" => $request -> model_id,
         ]);
-        return redirect() -> route("add-brand");
+        return redirect() -> route("add-product");
     }
 
     /**
@@ -90,10 +99,10 @@ class Brands extends Controller
      */
     public function destroy($id)
     {
-        $deleteBrand = BrandsModel::find($id);
-        if($deleteBrand){
-            $deleteBrand->delete();
+        $deleteProduct = ProductsModel::find($id);
+        if($deleteProduct){
+            $deleteProduct->delete();
         }
-        return redirect() -> route("add-brand");
+        return redirect() -> route("add-product");
     }
 }
