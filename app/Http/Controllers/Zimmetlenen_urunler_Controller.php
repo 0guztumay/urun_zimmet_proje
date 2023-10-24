@@ -28,22 +28,15 @@ class Zimmetlenen_urunler_Controller extends Controller
     public function urunZimmetle(Request $request){
         $urun_adi = $request -> urun_adi;
         $urun_modeli = $request -> urun_modeli;
-        $urun_tipi = $request -> urun_tipi;
         $urun_sayisi = $request -> urun_sayisi;
         $zimmetlenen_kisi_adi = $request -> zimmetlenen_kisi;
 
         $isimBul = KisilerModel::where("ad", $zimmetlenen_kisi_adi) -> first();
 
-
-        $isimYazdir = Zimmetlenen_urunler_Model::where("zimmetlenen_kisi_id", $isimBul -> kisi_id) -> first();
-        $kisiBul = Zimmetlenen_urunler_Model::find($isimYazdir);
-        // dd($kisiBul -> kisiler);
-        // $isimBul = KisilerModel::find("Oguz") -> first();
         if($isimBul !== null){
             Zimmetlenen_urunler_Model::create([
             "urun_adi" => $urun_adi,
             "urun_modeli" => $urun_modeli,
-            "urun_tipi" => $urun_tipi,
             "urun_sayisi" => $urun_sayisi,
             "zimmetlenen_kisi_id" => $isimBul -> kisi_id,
             ]);
@@ -60,7 +53,6 @@ class Zimmetlenen_urunler_Controller extends Controller
         Zimmetlenen_urunler_Model::find($id) -> update([
             "urun_adi" => $request -> urun_adi,
             "urun_modeli" => $request -> urun_modeli,
-            "urun_tipi" => $request -> urun_tipi,
             "urun_sayisi" => $request -> urun_sayisi,
             "zimmetlenen_kisi_id" => $request -> zimmetlenen_kisi,
         ]);

@@ -7,12 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Zimmetlenen_urunler_Model extends Model
 {
     protected $table = "zimmetlenen_urunler";
-    protected $primaryKey = 'urun_id';
     protected $fillable = [
         "zimmetlenen_kisi_id",
         "urun_adi",
         "urun_modeli",
-        "urun_tipi",
         "urun_sayisi",
         "created_at",
         "updated_at",

@@ -2,28 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DebitModel;
+use App\Models\ModelsModel;
+use App\Models\ProductsModel;
 use App\Models\UsersModel;
 use Illuminate\Http\Request;
 
-class Users extends Controller
+class DebitedProducts extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $users = UsersModel::get();
-        return view('add-user', ["users" => $users]);
+        $users = UsersModel::find($id);
+        $debits = DebitModel::find($id);
+        $products = ProductsModel::find($id);
+        $model = ModelsModel::find($id);
+        return view('debited-products',compact(['users','debits','products','model']));
+        // return view("debited-products", ["users" => $users, "debits" => $debits, "products" => $products, "models" => $model]);
     }
     
-    public function showUsers()
+    
+    public function index1()
     {
-        $users = UsersModel::get();
-        return view('users', ["users" => $users]);
+        $debits = DebitModel::get();
+        // $products = ProductsModel::all();
+        return view("debited-products", ["debits" => $debits]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -31,8 +39,7 @@ class Users extends Controller
      */
     public function create()
     {
-        $users = UsersModel::get();
-        return view('add-user', ["users" => $users]);
+        //
     }
 
     /**
@@ -43,11 +50,7 @@ class Users extends Controller
      */
     public function store(Request $request)
     {
-        UsersModel::create([
-            "username" => $request -> username,
-            "name" => $request -> name,
-        ]);
-        return redirect() -> route("add-user");
+        //
     }
 
     /**
@@ -81,11 +84,7 @@ class Users extends Controller
      */
     public function update(Request $request, $id)
     {
-        UsersModel::find($id) -> update([
-            "username" => $request -> username,
-            "name" => $request -> name,
-        ]);
-        return redirect() -> route("add-user");
+        //
     }
 
     /**
@@ -96,10 +95,6 @@ class Users extends Controller
      */
     public function destroy($id)
     {
-        $deleteUser = UsersModel::find($id);
-        if($deleteUser){
-            $deleteUser->delete();
-        }
-        return redirect() -> route("add-user");
+        //
     }
 }

@@ -21,12 +21,20 @@
             </select>
             <select class="form-select mt-3" name="selectedProduct" aria-label="Default select example">
                 <option selected disabled>Select Product</option>
-                @if (@isset($products))
+                {{-- @if (@isset($products)) --}}
                     @foreach ($products as $product)
                         <option value="{{$product -> id}}">{{$product -> name}}</option>
                     @endforeach
-                @endif
+                {{-- @endif --}}
             </select>
+            {{-- <select class="form-select mt-3" name="selectedModel" aria-label="Default select example">
+                <option selected disabled>Select Model</option>
+                    @foreach ($products as $product)
+                        @foreach ($product -> model as $model)
+                        <option value="{{$model -> id}}">{{$model -> name}}</option>
+                        @endforeach
+                    @endforeach
+            </select> --}}
               <div class="form-outline mt-3">
                 <input type="number" name="quantity" class="form-control" placeholder="Quantity"/>
               </div>
@@ -35,7 +43,7 @@
 
           <br><br>
         <ul class="list-group">
-            @if (@isset($debits))
+            {{-- @if (@isset($debits)) --}}
                 @foreach ($debits as $debit)
                     <li class="list-group-item d-flex justify-content-between align-items-center text-center">
                         <form action="{{route("update-debit", ["id" => $debit -> id])}}" method="POST">
@@ -51,7 +59,7 @@
                         </form>
                     </li>
                 @endforeach
-            @endif
+            {{-- @endif --}}
         </ul>
     </div>
 

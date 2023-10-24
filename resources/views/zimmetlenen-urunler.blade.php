@@ -43,13 +43,13 @@
                                             </div>
                                         </td>
                                         <td>{{$urunler -> urun_modeli}}</td>
-                                        <td><span class="d-inline-block align-middle">{{$urunler -> urun_tipi}}</span></td>
+                                        {{-- <td><span class="d-inline-block align-middle">{{$urunler -> urun_tipi}}</span></td> --}}
                                         <td><span>{{$urunler -> urun_sayisi}}</span></td>
                                         <td>{{$urunler -> kisiler() -> first() -> ad}}</td>
                                         <td>{{$urunler -> created_at}}</td>
                                         <td class="text-end">
                                             <div class="actionButton">  
-                                                <a href="{{route('zimmet-duzenle', ["urun_id" => $urunler -> urun_id])}}">
+                                                <a href="{{route('zimmet-duzenle', ["id" => $urunler -> id])}}">
                                                     <button type="button" class="btn btn-danger">Düzenle</button>
                                                 </a>
                                             </div>

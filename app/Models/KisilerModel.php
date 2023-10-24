@@ -14,8 +14,4 @@ class KisilerModel extends Model
         "created_at",
         "updated_at",
     ];
-
-    // public function urunler(){
-    //     return $this -> hasOne(Zimmetlenen_urunler_Model::class, 'kisi_id', "zimmetlenen_kisi_id");
-    // }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Models;
 use App\Http\Controllers\Products;
 use App\Http\Controllers\Users;
 use App\Http\Controllers\Debit;
+use App\Http\Controllers\DebitedProducts;
 use App\Http\Controllers\Zimmetlenen_urunler_Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +29,15 @@ Route::post('/urun-zimmetlendi', [Zimmetlenen_urunler_Controller::class, "urunZi
 
 Route::get('/zimmetlenen-urunler',[Zimmetlenen_urunler_Controller::class, "zimmetlenenUrunleriListele"]);
 
-Route::get('/zimmet-duzenle/{urun_id}', [Zimmetlenen_urunler_Controller::class, "showPageZimmetDuzenle"])->name("zimmet-duzenle");
-Route::post('/zimmet-guncelle/{urun_id}', [Zimmetlenen_urunler_Controller::class, "update"]) -> name("guncelle");
+Route::get('/zimmet-duzenle/{id}', [Zimmetlenen_urunler_Controller::class, "showPageZimmetDuzenle"])->name("zimmet-duzenle");
+Route::post('/zimmet-guncelle/{id}', [Zimmetlenen_urunler_Controller::class, "update"]) -> name("guncelle");
 
-Route::get('/zimmet-sil/{urun_id}', [Zimmetlenen_urunler_Controller::class, "delete"]) -> name("sil");
+Route::get('/zimmet-sil/{id}', [Zimmetlenen_urunler_Controller::class, "delete"]) -> name("sil");
+
+Route::get('/users', [Users::class, "showUsers"]) -> name("users");
+
+Route::get('/debited-products/{id}', [DebitedProducts::class, "index"]) -> name("products");
+// Route::get('/debited-products', [DebitedProducts::class, "index1"]) -> name("products");
 
 //Brands
 Route::get('/add-brand', [Brands::class, "index"]);

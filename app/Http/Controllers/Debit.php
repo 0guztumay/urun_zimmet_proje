@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BrandsModel;
 use App\Models\DebitModel;
+use App\Models\ModelsModel;
 use App\Models\ProductsModel;
 use App\Models\UsersModel;
 use Illuminate\Http\Request;
@@ -32,6 +34,8 @@ class Debit extends Controller
         $debits = DebitModel::get();
         $users = UsersModel::all();
         $products = ProductsModel::all();
+        // $models = ModelsModel::all();
+        // $brands = BrandsModel::all();
         return view('add-debit', ["debits" => $debits , "users" => $users ,"products" => $products]);
     }
 
@@ -45,6 +49,7 @@ class Debit extends Controller
     {
         $find_user = UsersModel::find($request -> selectedUser);
         $find_product = ProductsModel::find($request -> selectedProduct);
+        // $find_model = ModelsModel::find($request -> selectedModel);
         if($find_product and $find_user){
             DebitModel::create([
                 "user_id" => $find_user -> id,
