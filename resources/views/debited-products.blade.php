@@ -55,13 +55,13 @@
                                         <td><span>{{$debit -> quantity}}</span></td>
                                         {{-- <td>{{$debits -> getUser -> name}}</td> --}}
                                         <td>{{$debit -> created_at}}</td>
-                                        <td class="text-end">
-                                            {{-- <div class="actionButton">  
+                                        {{-- <td class="text-end">
+                                            <div class="actionButton">  
                                                 <a href="{{route('zimmet-duzenle', ["id" => $debit -> id])}}">
                                                     <button type="button" class="btn btn-danger">Düzenle</button>
-                                                </a> --}}
+                                                </a>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     @endforeach
                             </tbody>
