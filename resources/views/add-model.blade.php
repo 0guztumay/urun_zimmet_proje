@@ -30,14 +30,14 @@
 
           <br><br>
         <ul class="list-group">
-            @if (@isset($models))
+            {{-- @if (@isset($models)) --}}
                 @foreach ($models as $model)
                     <li class="list-group-item d-flex justify-content-between align-items-center text-center">
                         <form action="{{route("update-model", ["id" => $model -> id])}}" method="POST">
                             @csrf
                             <input type="text" name="name" class="form-control" style="margin-left: 30%" placeholder="Model Name" value="{{$model -> name}}"/>
-                            @foreach ($model -> brand as $brand)
-                                <span class="form-control" style="margin-left: 30%">{{$brand->name}}</span>
+                            @foreach ($model -> getBrand as $brand)
+                                <span class="form-control" style="margin-left: 30%">{{$brand -> name}}</span>
                             @endforeach
                             <input type="number" name="brand_id" class="form-control" style="margin-left: 30%" placeholder="Model Name" value="{{$model -> brand_id}}"/>
                             
@@ -48,7 +48,7 @@
                         </form>
                     </li>
                 @endforeach
-            @endif
+            {{-- @endif --}}
         </ul>
     </div>
 

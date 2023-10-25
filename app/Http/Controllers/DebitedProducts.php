@@ -18,20 +18,13 @@ class DebitedProducts extends Controller
     public function index($id)
     {
         $users = UsersModel::find($id);
-        $debits = DebitModel::find($id);
-        $products = ProductsModel::find($id);
-        $model = ModelsModel::find($id);
-        return view('debited-products',compact(['users','debits','products','model']));
-        // return view("debited-products", ["users" => $users, "debits" => $debits, "products" => $products, "models" => $model]);
+
+
+        $debits = DebitModel::whereUser_id($id) -> get();
+        // $debitedProducts = $debits -> getUser -> name ." / ". $debits -> quantity ." / ".$product -> name ." / ". $model -> name ." / ". $brand -> name;
+        return view("debited-products", ["users" => $users, "debits" => $debits]);
     }
-    
-    
-    public function index1()
-    {
-        $debits = DebitModel::get();
-        // $products = ProductsModel::all();
-        return view("debited-products", ["debits" => $debits]);
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,7 +32,21 @@ class DebitedProducts extends Controller
      */
     public function create()
     {
-        //
+        // $users = UsersModel::find($id);
+
+
+        // $debits = DebitModel::find($id);
+        // foreach($debits -> getProduct as $product){
+        //     $productName = $product -> name;
+        //     foreach ($product -> getModel as $model) {
+        //         $modelName = $model -> name;
+        //         foreach ($model -> getBrand as $brand) {
+        //             $brandName = $brand -> name;
+        //         }
+        //     }
+        // }
+        // // $debitedProducts = $debits -> getUser -> name ." / ". $debits -> quantity ." / ".$product -> name ." / ". $model -> name ." / ". $brand -> name;
+        // return view("debited-products", ["users" => $users, "debits" => $debits, "brandName" => $brandName, "modelName" => $modelName, "productName" => $productName]);
     }
 
     /**

@@ -33,7 +33,7 @@
                             @csrf
                             <input type="text" name="name" class="form-control" style="margin-left: 30%" value="{{$product -> name}}"/>
                             <input type="number" name="model_id" class="form-control" style="margin-left: 30%" value="{{$product -> model_id}}"/>
-                            @foreach ($product -> model as $model)
+                            @foreach ($product -> getModel as $model)
                                 <span class="form-control" style="margin-left: 30%">{{$model-> name}}</span>
                             @endforeach
                             <div style="margin-left: 30%">

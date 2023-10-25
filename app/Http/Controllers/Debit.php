@@ -8,6 +8,7 @@ use App\Models\ModelsModel;
 use App\Models\ProductsModel;
 use App\Models\UsersModel;
 use Illuminate\Http\Request;
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 
 class Debit extends Controller
 {
@@ -31,11 +32,19 @@ class Debit extends Controller
      */
     public function create()
     {
+        // $debit = DebitModel::find(4);
+        // foreach($debit -> getProduct as $product){
+        //     foreach ($product -> getModel as $model) {
+        //         foreach ($model -> getBrand as $brand) {
+        //             return $debit -> getUser -> name ." / ". $debit -> quantity ." / ".$product -> name ." / ". $model -> name ." / ". $brand -> name;
+        //         }
+        //     }
+        // }
+
+
         $debits = DebitModel::get();
         $users = UsersModel::all();
         $products = ProductsModel::all();
-        // $models = ModelsModel::all();
-        // $brands = BrandsModel::all();
         return view('add-debit', ["debits" => $debits , "users" => $users ,"products" => $products]);
     }
 
@@ -49,7 +58,7 @@ class Debit extends Controller
     {
         $find_user = UsersModel::find($request -> selectedUser);
         $find_product = ProductsModel::find($request -> selectedProduct);
-        // $find_model = ModelsModel::find($request -> selectedModel);
+
         if($find_product and $find_user){
             DebitModel::create([
                 "user_id" => $find_user -> id,

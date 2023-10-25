@@ -40,23 +40,27 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div>
-                                                    {{-- @foreach ($products as $product) --}}
-                                                        <div class="h6 mb-0 lh-1">{{$products -> name}}</div>
-                                                    {{-- @endforeach --}}
+                                                    @foreach ($debit -> getProduct as $product)
+                                                        <div class="h6 mb-0 lh-1">{{$product -> name}}</div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </td>
-                                            <td>{{$model -> name}}</td>
+                                        @foreach ($debit -> getProduct as $product)
+                                            @foreach ($product -> getModel as $model)
+                                                <td>{{$model -> name}}</td>
+                                            @endforeach
+                                        @endforeach
                                         {{-- <td><span class="d-inline-block align-middle">{{$debit -> urun_tipi}}</span></td> --}}
                                         <td><span>{{$debit -> quantity}}</span></td>
-                                        <td>{{$debit-> ad}}</td>
+                                        {{-- <td>{{$debits -> getUser -> name}}</td> --}}
                                         <td>{{$debit -> created_at}}</td>
                                         <td class="text-end">
                                             {{-- <div class="actionButton">  
                                                 <a href="{{route('zimmet-duzenle', ["id" => $debit -> id])}}">
                                                     <button type="button" class="btn btn-danger">Düzenle</button>
-                                                </a>
-                                            </div> --}}
+                                                </a> --}}
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach

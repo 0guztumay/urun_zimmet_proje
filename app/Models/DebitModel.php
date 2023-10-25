@@ -15,11 +15,11 @@ class DebitModel extends Model
         "updated_at",
     ];
 
-    public function product(){
+    public function getProduct(){
         return $this->hasMany(ProductsModel::class, 'id', 'product_id');
     }
 
-    public function user(){
-        return $this->hasMany(UsersModel::class, 'user_id', 'id');
+    public function getUser(){
+        return $this->hasOne(UsersModel::class, 'id', 'user_id');
     }
 }

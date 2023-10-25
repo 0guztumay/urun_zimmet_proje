@@ -14,7 +14,7 @@ class ProductsModel extends Model
         "updated_at",
     ];
 
-    public function model(){
+    public function getModel(){
         return $this->hasMany(ModelsModel::class, "id", "model_id");
     }
 }

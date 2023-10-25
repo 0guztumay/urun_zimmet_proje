@@ -14,7 +14,7 @@ class ModelsModel extends Model
         "updated_at",
     ];
 
-    public function brand(){
+    public function getBrand(){
         return $this->hasMany(BrandsModel::class, 'id','brand_id');
     }
 }
